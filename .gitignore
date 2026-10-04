@@ -12,6 +12,9 @@ dist/
 .env
 .env.*
 
+# Configuración local de Claude Code (permisos personales)
+.claude/settings.local.json
+
 # Capturas locales de verificación
 .screenshots/
 

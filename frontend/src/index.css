@@ -114,10 +114,14 @@ a {
   text-shadow: 4px 4px 0 var(--panel);
 }
 
+/* Con fondo de panel: sobre las bandas claras del cielo el texto no alcanzaba 4.5:1 */
 .subtitle {
+  display: inline-block;
   margin-top: 0.5rem;
-  font-size: 1.15rem;
-  text-shadow: 2px 2px 0 var(--panel);
+  padding: 0.1rem 0.6rem;
+  font-size: 1.1rem;
+  background: var(--panel);
+  border: 2px solid var(--border);
 }
 
 .date-badge {
@@ -592,9 +596,11 @@ a {
   background: color-mix(in srgb, var(--accent) 45%, var(--panel));
 }
 
+/* Seleccionado: fondo claro y texto oscuro (contraste ≥ 4.5:1 en los cuatro temas) */
 .pixel-button[aria-pressed='true'],
 .pixel-button[aria-selected='true'] {
-  background: var(--accent);
+  background: var(--accent-2);
+  color: var(--panel);
   border-color: var(--gold);
 }
 

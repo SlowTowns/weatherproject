@@ -16,14 +16,20 @@ Crear una página web enfocada en mostrar el clima del municipio de Monterrey, N
 
 - Idioma: español (México). Unidades: °C, km/h, mm.
 - Diseño responsivo (móvil primero), limpio y accesible.
-- Datos obtenidos de una API meteorológica pública y confiable (por definir, p. ej. Open-Meteo u OpenWeatherMap).
+- Datos de Open-Meteo (clima y calidad del aire) y mapa de OpenStreetMap: gratuitos y sin API key. No usar servicios de paga.
+- Estilo pixel art (Blasphemous / Celeste) con temas por estación; en producción el tema depende solo de la fecha real.
+- Contraste de texto ≥ 4.5:1 en los cuatro temas.
+- Antes de instalar librerías o dependencias, avisar al usuario. Revisar vulnerabilidades (`npm audit`, `pip-audit`).
 - Manejar errores de red/API con mensajes claros al usuario encargado del backend, mostrar errores que no revelen información al usuario final.
 - No exponer claves de API en el código del cliente si la API las requiere.
 
 ## Stack tecnológico
 
-Por definir. Se sugiere comenzar con HTML, CSS y JavaScript simples, sin dependencias innecesarias.
+- Backend: Python + FastAPI + httpx + Pydantic (`backend/`), pruebas con pytest.
+- Frontend: Vite + React + Leaflet (`frontend/`).
+- En producción FastAPI sirve la API y `frontend/dist`.
+- Repositorio: https://github.com/SlowTowns/weatherproject
 
 ## Estado
 
-Proyecto en fase inicial: definición de objetivo.
+Fases 0 a 5 completadas (ver `PLAN.md` y `README.md`).

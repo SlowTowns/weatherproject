@@ -3,10 +3,12 @@
 import logging
 from contextlib import asynccontextmanager
 from datetime import datetime
+from pathlib import Path
 
 from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from app.alerts import evaluate_alerts
@@ -24,6 +26,23 @@ log = logging.getLogger(__name__)
 
 GENERIC_ERROR = "El servicio del clima no está disponible por el momento. Intenta de nuevo en unos minutos."
 HOURLY_LIMIT = 48
+
+# Frontend compilado (npm run build). Si existe, este mismo servidor lo sirve en producción.
+FRONTEND_DIST = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+
+SECURITY_HEADERS = {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    # OpenStreetMap pide el encabezado Referer para servir sus mosaicos.
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Content-Security-Policy": (
+        "default-src 'self'; "
+        "img-src 'self' data: https://tile.openstreetmap.org; "
+        "style-src 'self' 'unsafe-inline'; "
+        "script-src 'self'; font-src 'self'; connect-src 'self'; "
+        "frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    ),
+}
 
 
 class CurrentResponse(BaseModel):
@@ -58,6 +77,14 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def security_headers(request: Request, call_next):
+    response = await call_next(request)
+    for name, value in SECURITY_HEADERS.items():
+        response.headers.setdefault(name, value)
+    return response
 
 
 def get_service(request: Request) -> WeatherService:
@@ -109,3 +136,8 @@ async def alertas(service: WeatherService = Depends(get_service)):
         stale=forecast.stale,
         alerts=evaluate_alerts(forecast),
     )
+
+
+# Se monta al final para que las rutas /api tengan prioridad.
+if FRONTEND_DIST.is_dir():
+    app.mount("/", StaticFiles(directory=FRONTEND_DIST, html=True), name="frontend")

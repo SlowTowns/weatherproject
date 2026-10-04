@@ -84,6 +84,15 @@ def test_data_unavailable_returns_generic_503():
     assert "httpx" not in response.text
 
 
+def test_security_headers_are_set():
+    response = client_with(FakeService(make_forecast())).get("/api/clima")
+    assert response.headers["X-Content-Type-Options"] == "nosniff"
+    assert response.headers["X-Frame-Options"] == "DENY"
+    csp = response.headers["Content-Security-Policy"]
+    assert "default-src 'self'" in csp
+    assert "https://tile.openstreetmap.org" in csp
+
+
 def test_unexpected_error_returns_generic_500_without_details():
     response = client_with(FakeService(error=RuntimeError("clave secreta xyz"))).get("/api/alertas")
     assert response.status_code == 500

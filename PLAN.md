@@ -58,9 +58,13 @@ Cada fase termina con commit + push. Indicaré "Fase N en curso / completada".
 - Temas: en la versión final solo por fecha real; la vista previa de temas existe únicamente en desarrollo.
 
 ### Fase 5 — Integración, accesibilidad y cierre
-- Proxy/CORS entre front y back, pruebas end-to-end manuales.
-- Contraste, `prefers-reduced-motion`, textos alternativos.
-- Actualizar README y `CLAUDE.md` (estado y stack definitivo); push final.
+- FastAPI sirve el frontend compilado en producción, con cabeceras de seguridad (CSP, nosniff, X-Frame-Options).
+- Contraste WCAG ≥ 4.5:1 en los cuatro temas (ajustados botón seleccionado y subtítulo), `prefers-reduced-motion`, textos alternativos.
+- `requirements.txt` / `requirements-dev.txt` con versiones fijas; auditoría con `pip-audit` y `npm audit`.
+- README y `CLAUDE.md` con el stack definitivo; push final.
+
+## Estado
+Fases 0 a 5 completadas.
 
 ## Estructura
 ```
