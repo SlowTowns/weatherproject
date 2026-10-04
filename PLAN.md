@@ -46,9 +46,16 @@ Cada fase termina con commit + push. Indicaré "Fase N en curso / completada".
 - Paleta limitada, fuente pixel, estilos base responsivos (móvil primero).
 
 ### Fase 4 — Frontend: componentes y arte pixel
-- Tarjeta de clima actual, pronóstico horario y de 7 días, calidad del aire, alertas.
-- Fondo del Cerro de la Silla y sprites por condición (sol, nubes, lluvia, tormenta).
-- Alertas con estilo sombrío (dorado/rojo sangre).
+- Layout de escritorio tipo dashboard (como las páginas de clima habituales); en móvil, una columna.
+- Tarjeta de clima actual (sin presión), tipografía fina en los indicadores.
+- Línea del tiempo de 24 h estilo Google (temperatura y lluvia), con cursor, teclado y tabla accesible.
+- Pronóstico de 7 días con barra de rango de temperatura.
+- Mapa de la ciudad (Leaflet + OpenStreetMap, sin API key) con la temperatura sobre el mapa.
+- Calidad del aire con escala ICA; alertas con estilo sombrío (dorado/rojo sangre).
+- Fecha actual (hora de Monterrey) arriba a la derecha.
+- Hero con el Cerro de la Silla en pixel art y sprites del clima (sol, luna, nubes, lluvia, tormenta, niebla).
+- Mascota: oso pixel art con accesorio por estación (flor, lentes, hoja, bufanda) y consejos según el clima.
+- Temas: en la versión final solo por fecha real; la vista previa de temas existe únicamente en desarrollo.
 
 ### Fase 5 — Integración, accesibilidad y cierre
 - Proxy/CORS entre front y back, pruebas end-to-end manuales.

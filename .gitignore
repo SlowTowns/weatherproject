@@ -12,6 +12,9 @@ dist/
 .env
 .env.*
 
+# Capturas locales de verificación
+.screenshots/
+
 # SO / editor
 .DS_Store
 Thumbs.db
