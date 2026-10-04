@@ -5,7 +5,7 @@ Un valor fuera de rango físico se descarta (None) en lugar de mostrarse al usua
 
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, computed_field
 
 # Rangos plausibles para Monterrey (con margen amplio).
 RANGES = {
@@ -78,6 +78,16 @@ class Forecast(BaseModel):
     daily: list[DailyPoint]
 
 
+AQI_CATEGORIES = (
+    (50, "Buena"),
+    (100, "Moderada"),
+    (150, "Dañina para grupos sensibles"),
+    (200, "Dañina"),
+    (300, "Muy dañina"),
+    (500, "Peligrosa"),
+)
+
+
 class AirQuality(BaseModel):
     fetched_at: datetime
     stale: bool = False
@@ -87,3 +97,19 @@ class AirQuality(BaseModel):
     pm10: float | None = None
     ozone: float | None = None
     nitrogen_dioxide: float | None = None
+
+    @computed_field
+    @property
+    def category(self) -> str | None:
+        if self.us_aqi is None:
+            return None
+        return next(label for limit, label in AQI_CATEGORIES if self.us_aqi <= limit)
+
+
+class Alert(BaseModel):
+    type: str  # "calor_extremo" | "tormenta" | "frente_frio"
+    severity: str  # "moderada" | "alta"
+    title: str
+    message: str
+    starts_at: datetime
+    hours: int
