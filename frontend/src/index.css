@@ -1,0 +1,172 @@
+/* Base pixel art: bordes duros, sin degradados suaves ni sombras difusas. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  image-rendering: pixelated;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Pixelify Sans', monospace;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--ink);
+  /* Cielo por bandas (sin degradado suave) */
+  background: linear-gradient(
+    to bottom,
+    var(--sky-top) 0 33%,
+    var(--sky-mid) 33% 66%,
+    var(--sky-low) 66% 100%
+  );
+  background-attachment: fixed;
+}
+
+h1,
+h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.page {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.header {
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.header h1 {
+  font-size: clamp(1.1rem, 5vw, 1.75rem);
+  text-shadow: 4px 4px 0 var(--panel);
+}
+
+.subtitle {
+  margin: 0.5rem 0 0;
+  color: var(--ink);
+  text-shadow: 2px 2px 0 var(--panel);
+}
+
+.panel {
+  background: var(--panel);
+  border: 4px solid var(--border);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.45);
+  padding: 1rem;
+}
+
+.panel h2 {
+  font-size: 0.875rem;
+  color: var(--accent-2);
+  margin-bottom: 1rem;
+}
+
+.temperature {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(2rem, 12vw, 3.5rem);
+  margin: 0;
+  color: var(--accent-2);
+}
+
+.description {
+  margin: 0.5rem 0 0;
+  font-size: 1.25rem;
+}
+
+.notice {
+  margin: 0.75rem 0 0;
+  color: var(--gold);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+}
+
+.stat {
+  border: 2px solid var(--border);
+  padding: 0.5rem;
+}
+
+.stat dt {
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+}
+
+.stat dd {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.unit {
+  font-weight: 400;
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+}
+
+.status {
+  text-align: center;
+}
+
+.status.error {
+  border-color: var(--danger);
+}
+
+.theme-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.pixel-button {
+  font-family: 'Pixelify Sans', monospace;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--panel);
+  border: 3px solid var(--border);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.45);
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+}
+
+.pixel-button:hover {
+  background: var(--accent);
+}
+
+.pixel-button[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--gold);
+}
+
+.pixel-button:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

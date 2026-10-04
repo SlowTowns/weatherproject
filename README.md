@@ -14,7 +14,11 @@ Página web del clima del municipio de Monterrey, Nuevo León, con estética pix
 - `CLAUDE.md`: objetivo y lineamientos del proyecto
 
 ## Estado
-Fases 0 a 2 completadas (preparación, datos y API con alertas). Consulta `PLAN.md`.
+Fases 0 a 3 completadas (preparación, datos, API con alertas y base del frontend). Consulta `PLAN.md`.
+
+## Frontend
+Con el backend corriendo, desde `frontend/`: `npm run dev` y abrir http://localhost:5173.
+Para forzar un tema: `?tema=verano`, `?tema=otono`, `?tema=invierno` o `?tema=primavera`.
 
 ## Backend
 Desde la raíz del proyecto:

@@ -1,0 +1,69 @@
+/* Paletas limitadas por estación. Rojo sangre y dorado de alertas comunes a todas. */
+:root {
+  --danger: #b3202a;
+  --gold: #d9a441;
+
+  /* Valores por defecto: otoño */
+  --sky-top: #3a2740;
+  --sky-mid: #b4533a;
+  --sky-low: #e8a34f;
+  --ground: #4a2a1c;
+  --panel: #1f1418;
+  --border: #d98b3a;
+  --ink: #f7e3c4;
+  --ink-dim: #c9ad8a;
+  --accent: #c8442f;
+  --accent-2: #e8a34f;
+}
+
+:root[data-theme='verano'] {
+  --sky-top: #3b6fd4;
+  --sky-mid: #f2a65a;
+  --sky-low: #ffd9a0;
+  --ground: #8c3b1f;
+  --panel: #2a1410;
+  --border: #ffcf6b;
+  --ink: #fff1d6;
+  --ink-dim: #e0c391;
+  --accent: #ff5a36;
+  --accent-2: #ffcf6b;
+}
+
+:root[data-theme='otono'] {
+  --sky-top: #3a2740;
+  --sky-mid: #b4533a;
+  --sky-low: #e8a34f;
+  --ground: #4a2a1c;
+  --panel: #1f1418;
+  --border: #d98b3a;
+  --ink: #f7e3c4;
+  --ink-dim: #c9ad8a;
+  --accent: #c8442f;
+  --accent-2: #e8a34f;
+}
+
+:root[data-theme='invierno'] {
+  --sky-top: #1a2340;
+  --sky-mid: #4a6a9c;
+  --sky-low: #a9c4de;
+  --ground: #2a3550;
+  --panel: #0f1626;
+  --border: #7fb2e0;
+  --ink: #e6f1fa;
+  --ink-dim: #9fb8cf;
+  --accent: #5aa0d8;
+  --accent-2: #cfe6f5;
+}
+
+:root[data-theme='primavera'] {
+  --sky-top: #2c6e9c;
+  --sky-mid: #7bc4a0;
+  --sky-low: #f4d6e0;
+  --ground: #2f5d3a;
+  --panel: #14261c;
+  --border: #8fd18a;
+  --ink: #f2fbe9;
+  --ink-dim: #b5d3a8;
+  --accent: #e86b9a;
+  --accent-2: #f7d96b;
+}
