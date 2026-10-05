@@ -1,0 +1,1 @@
+100 solicitudes concurrentes, cache vacio -> 300 llamadas upstream (3.0 por solicitud); errores: 100

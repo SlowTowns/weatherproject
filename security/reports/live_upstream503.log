@@ -1,0 +1,21 @@
+INFO:     Started server process [3150]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:47030 - "GET /openapi.json HTTP/1.1" 200 OK
+2026-10-05 17:30:22,406 INFO httpx: HTTP Request: GET https://api.open-meteo.com/v1/forecast?latitude=25.6866&longitude=-100.3161&timezone=America%2FMonterrey&forecast_days=7&wind_speed_unit=kmh&temperature_unit=celsius&precipitation_unit=mm&current=temperature_2m%2Crelative_humidity_2m%2Capparent_temperature%2Cprecipitation%2Cweather_code%2Cpressure_msl%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Cis_day&hourly=temperature_2m%2Capparent_temperature%2Cprecipitation_probability%2Cprecipitation%2Cweather_code%2Cwind_gusts_10m&daily=weather_code%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum%2Cprecipitation_probability_max%2Cuv_index_max%2Csunrise%2Csunset "HTTP/1.1 503 Service Unavailable"
+2026-10-05 17:30:22,416 INFO httpx: HTTP Request: GET https://api.open-meteo.com/v1/forecast?latitude=25.6866&longitude=-100.3161&timezone=America%2FMonterrey&forecast_days=7&wind_speed_unit=kmh&temperature_unit=celsius&precipitation_unit=mm&current=temperature_2m%2Crelative_humidity_2m%2Capparent_temperature%2Cprecipitation%2Cweather_code%2Cpressure_msl%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Cis_day&hourly=temperature_2m%2Capparent_temperature%2Cprecipitation_probability%2Cprecipitation%2Cweather_code%2Cwind_gusts_10m&daily=weather_code%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum%2Cprecipitation_probability_max%2Cuv_index_max%2Csunrise%2Csunset "HTTP/1.1 503 Service Unavailable"
+2026-10-05 17:30:22,437 INFO httpx: HTTP Request: GET https://api.open-meteo.com/v1/forecast?latitude=25.6866&longitude=-100.3161&timezone=America%2FMonterrey&forecast_days=7&wind_speed_unit=kmh&temperature_unit=celsius&precipitation_unit=mm&current=temperature_2m%2Crelative_humidity_2m%2Capparent_temperature%2Cprecipitation%2Cweather_code%2Cpressure_msl%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Cis_day&hourly=temperature_2m%2Capparent_temperature%2Cprecipitation_probability%2Cprecipitation%2Cweather_code%2Cwind_gusts_10m&daily=weather_code%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum%2Cprecipitation_probability_max%2Cuv_index_max%2Csunrise%2Csunset "HTTP/1.1 503 Service Unavailable"
+2026-10-05 17:30:22,437 ERROR app.services.openmeteo: Fallo al obtener forecast: HTTPStatusError('Error del servidor')
+2026-10-05 17:30:22,437 ERROR app.main: Datos no disponibles en /api/clima: Sin datos disponibles
+INFO:     127.0.0.1:47036 - "GET /api/clima HTTP/1.1" 503 Service Unavailable
+2026-10-05 17:30:22,444 INFO httpx: HTTP Request: GET https://air-quality-api.open-meteo.com/v1/air-quality?latitude=25.6866&longitude=-100.3161&timezone=America%2FMonterrey&current=us_aqi%2Cpm2_5%2Cpm10%2Cozone%2Cnitrogen_dioxide "HTTP/1.1 503 Service Unavailable"
+2026-10-05 17:30:22,454 INFO httpx: HTTP Request: GET https://air-quality-api.open-meteo.com/v1/air-quality?latitude=25.6866&longitude=-100.3161&timezone=America%2FMonterrey&current=us_aqi%2Cpm2_5%2Cpm10%2Cozone%2Cnitrogen_dioxide "HTTP/1.1 503 Service Unavailable"
+2026-10-05 17:30:22,475 INFO httpx: HTTP Request: GET https://air-quality-api.open-meteo.com/v1/air-quality?latitude=25.6866&longitude=-100.3161&timezone=America%2FMonterrey&current=us_aqi%2Cpm2_5%2Cpm10%2Cozone%2Cnitrogen_dioxide "HTTP/1.1 503 Service Unavailable"
+2026-10-05 17:30:22,475 ERROR app.services.openmeteo: Fallo al obtener air_quality: HTTPStatusError('Error del servidor')
+2026-10-05 17:30:22,475 ERROR app.main: Datos no disponibles en /api/aire: Sin datos disponibles
+INFO:     127.0.0.1:47050 - "GET /api/aire HTTP/1.1" 503 Service Unavailable
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [3150]

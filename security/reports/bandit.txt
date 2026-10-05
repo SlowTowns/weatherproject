@@ -1,0 +1,31 @@
+Run started:2026-10-05 23:17:52.265182+00:00
+
+Test results:
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: backend/app/services/openmeteo.py:186:8
+185	                        await asyncio.sleep(self._backoff * 2**attempt)
+186	        assert last_exc is not None
+187	        raise last_exc
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 553
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 1
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 1
+Files skipped (0):

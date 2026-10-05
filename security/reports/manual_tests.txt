@@ -1,0 +1,59 @@
+/../../etc/passwd -> 404 {"detail":"Not Found"}
+/%2e%2e/%2e%2e/etc/passwd -> 404 {"detail":"Not Found"}
+/..%2f..%2fetc/passwd -> 404 {"detail":"Not Found"}
+//etc/passwd -> 404 {"detail":"Not Found"}
+/assets/../../backend/app/main.py -> 404 {"detail":"Not Found"}
+/.env -> 404 {"detail":"Not Found"}
+/.git/config -> 404 {"detail":"Not Found"}
+/assets/x.js.map -> 404 {"detail":"Not Found"}
+/backend/requirements.txt -> 404 {"detail":"Not Found"}
+/%00 -> 404 {"detail":"Not Found"}
+/api/../api/clima -> 404 {"detail":"Not Found"}
+/api/clima/ -> 404 {"detail":"Not Found"}
+/api/clima?x=%3Cscript%3E -> 200 {"fetched_at":"2026-10-05T23:18:10.392361Z","stale":false,"c
+== CORS
+Origin http://localhost:5173:
+access-control-allow-origin: http://localhost:5173
+vary: Origin
+Origin http://evil.example:
+vary: Origin
+Origin null:
+vary: Origin
+preflight:
+HTTP/1.1 200 OK
+access-control-allow-methods: GET
+access-control-max-age: 600
+access-control-allow-origin: http://localhost:5173
+access-control-allow-headers: x-evil
+== Cabeceras por tipo de respuesta
+-- /api/clima
+HTTP/1.1 200 OK
+server: uvicorn
+x-content-type-options: nosniff
+x-frame-options: DENY
+content-security-policy: default-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+-- /nope
+HTTP/1.1 404 Not Found
+server: uvicorn
+x-content-type-options: nosniff
+x-frame-options: DENY
+content-security-policy: default-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+-- /docs
+HTTP/1.1 200 OK
+server: uvicorn
+x-content-type-options: nosniff
+x-frame-options: DENY
+content-security-policy: default-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+-- /
+HTTP/1.1 200 OK
+server: uvicorn
+x-content-type-options: nosniff
+x-frame-options: DENY
+content-security-policy: default-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+== Host falso / cabeceras gigantes
+host: 200
+bighdr: 200
+== /docs bajo CSP
+https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js
+https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css
+https://fastapi.tiangolo.com/img/favicon.png

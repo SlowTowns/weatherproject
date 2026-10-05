@@ -1,0 +1,75 @@
+### Escenario: upstream503
+-- GET /api/clima
+HTTP/1.1 503 Service Unavailable
+server: uvicorn
+content-length: 104
+content-type: application/json
+
+{"detail":"El servicio del clima no está disponible por el momento. Intenta de nuevo en unos minutos."}
+
+-- GET /api/aire
+HTTP/1.1 503 Service Unavailable
+server: uvicorn
+content-length: 104
+content-type: application/json
+
+{"detail":"El servicio del clima no está disponible por el momento. Intenta de nuevo en unos minutos."}
+
+-- ¿El cuerpo filtra el detalle interno?
+0
+-- Log del servidor (detalle debe estar aquí):
+2026-10-05 17:30:22,437 ERROR app.services.openmeteo: Fallo al obtener forecast: HTTPStatusError('Error del servidor')
+2026-10-05 17:30:22,437 ERROR app.main: Datos no disponibles en /api/clima: Sin datos disponibles
+2026-10-05 17:30:22,475 ERROR app.services.openmeteo: Fallo al obtener air_quality: HTTPStatusError('Error del servidor')
+2026-10-05 17:30:22,475 ERROR app.main: Datos no disponibles en /api/aire: Sin datos disponibles
+
+### Escenario: malformed
+-- GET /api/clima
+HTTP/1.1 503 Service Unavailable
+server: uvicorn
+content-length: 104
+content-type: application/json
+
+{"detail":"El servicio del clima no está disponible por el momento. Intenta de nuevo en unos minutos."}
+
+-- GET /api/aire
+HTTP/1.1 503 Service Unavailable
+server: uvicorn
+content-length: 104
+content-type: application/json
+
+{"detail":"El servicio del clima no está disponible por el momento. Intenta de nuevo en unos minutos."}
+
+-- ¿El cuerpo filtra el detalle interno?
+0
+-- Log del servidor (detalle debe estar aquí):
+2026-10-05 17:30:23,273 ERROR app.services.openmeteo: Fallo al obtener forecast: DataUnavailable('Temperatura o fecha actual inválida')
+2026-10-05 17:30:23,273 ERROR app.main: Datos no disponibles en /api/clima: Sin datos disponibles
+2026-10-05 17:30:23,280 ERROR app.services.openmeteo: Fallo al obtener air_quality: DataUnavailable('Fecha de calidad del aire inválida')
+2026-10-05 17:30:23,280 ERROR app.main: Datos no disponibles en /api/aire: Sin datos disponibles
+
+### Escenario: unexpected
+-- GET /api/clima
+HTTP/1.1 500 Internal Server Error
+server: uvicorn
+content-length: 104
+content-type: application/json
+
+{"detail":"El servicio del clima no está disponible por el momento. Intenta de nuevo en unos minutos."}
+
+-- GET /api/aire
+HTTP/1.1 500 Internal Server Error
+server: uvicorn
+content-length: 104
+content-type: application/json
+
+{"detail":"El servicio del clima no está disponible por el momento. Intenta de nuevo en unos minutos."}
+
+-- ¿El cuerpo filtra el detalle interno?
+0
+-- Log del servidor (detalle debe estar aquí):
+2026-10-05 17:30:23,832 ERROR app.main: Error inesperado en /api/clima
+RuntimeError: fallo inesperado DETALLE-INTERNO-NO-DEBE-SALIR /etc/passwd
+ERROR:    Exception in ASGI application
+RuntimeError: fallo inesperado DETALLE-INTERNO-NO-DEBE-SALIR /etc/passwd
+
